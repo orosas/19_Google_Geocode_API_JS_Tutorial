@@ -29,6 +29,15 @@ function initMap() {
   // Creación del Mapa
   let map = new google.maps.Map(document.getElementById("map"), options);
   
+  // Listen for click on map
+  // Nota: addListener que agrega un marker al mapa al momento de hacer
+  //     click con el mouse
+  google.maps.event.addListener(map, 'click', function(event) {
+    // Nota: event.latlng contiene las coordenadas al momento de hacer click en el mapa
+    console.log(event.latLng);
+    addMarker({coords:event.latLng});
+  })
+
   
   // // ******* Nota: Crea marker en el mapa
   // let coordBellasArtes = {lat: 19.4356000, lng: -99.1413000};
