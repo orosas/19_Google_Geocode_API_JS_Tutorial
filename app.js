@@ -57,24 +57,50 @@ function initMap() {
 
 
   // >>>>> Multiple Markers
-  addMarker({lat: 19.4356000, lng: -99.1413000}); // Bellas Artes
-  addMarker({lat: 19.432778, lng: -99.133333}); // Zócalo CDMX
-  addMarker({lat: 19.431270, lng: -99.141998}); // Zócalo CDMX
+  addMarker({coords:{lat: 19.4356000, lng: -99.1413000},
+    iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+    content: 'Bellas Artes',
+  }); // Bellas Artes
+  // Zócalo CDMX
+  addMarker({coords:{lat: 19.432778, lng: -99.133333},
+    content: 'Zócalo CDMX',
+  });
 
+  // Metro San Juan Deletrán CDMX
+  addMarker({coords:{lat: 19.431270, lng: -99.141998},
+    content: 'Metro San Juan Deletrán',
+  }); 
 
+  http://maps.google.com/mapfiles/kml/shapes/marina.png
 
   // Add marker function
-  function addMarker(coords) {
+  function addMarker(props) {
       // ******* Nota: Crea marker en el mapa
 
-      const imagen = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
-
-  let bellasArtesMarker = new google.maps.Marker({
-    position: coords,
+  let marker = new google.maps.Marker({
+    position: props.coords,
     map: map,
     title: 'Palacio de Bellas Artes',
-    icon: imagen
+    // icon: props.iconImage,
   });
+
+  // Check for customicon
+  if (props.iconImage) {
+    // Set icon image
+    marker.setIcon(props.iconImage);
+  }
+
+  // Check content
+  if(props.content){
+    let infoWindow = new google.maps.InfoWindow({
+        content:`<h1>${props.content}</h1>`,
+      });
+      marker.addListener('click', function(){
+        console.log('Dentro de infoWindow');
+        infoWindow.open(map, marker);
+      })
+  }
+
   }
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
