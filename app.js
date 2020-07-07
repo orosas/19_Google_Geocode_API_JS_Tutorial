@@ -57,21 +57,43 @@ function initMap() {
 
 
   // >>>>> Multiple Markers
-  addMarker({coords:{lat: 19.4356000, lng: -99.1413000},
-    iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-    content: 'Bellas Artes',
-  }); // Bellas Artes
-  // Zócalo CDMX
-  addMarker({coords:{lat: 19.432778, lng: -99.133333},
-    content: 'Zócalo CDMX',
-  });
+  // Nota: Multipeles markers usanddo un array
 
-  // Metro San Juan Deletrán CDMX
-  addMarker({coords:{lat: 19.431270, lng: -99.141998},
-    content: 'Metro San Juan Deletrán',
-  }); 
+  let markers = [
+    {coords:{lat: 19.4356000, lng: -99.1413000},
+      iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+      content: 'Bellas Artes',
+    },
+    {coords:{lat: 19.432778, lng: -99.133333},
+      content: 'Zócalo CDMX',
+    },
+    {coords:{lat: 19.431270, lng: -99.141998},
+      content: 'Metro San Juan Deletrán',
+    }
+  ];
 
-  http://maps.google.com/mapfiles/kml/shapes/marina.png
+  // Loop through markers
+
+  for (let i = 0; i < markers.length; i++) {
+    // Add marker
+    addMarker(markers[i]);
+  }
+
+// xxxxxx Nota: Creación de múltiples markers llamando a función addMarker
+  // addMarker({coords:{lat: 19.4356000, lng: -99.1413000},
+  //   iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+  //   content: 'Bellas Artes',
+  // }); // Bellas Artes
+  // // Zócalo CDMX
+  // addMarker({coords:{lat: 19.432778, lng: -99.133333},
+  //   content: 'Zócalo CDMX',
+  // });
+
+  // // Metro San Juan Deletrán CDMX
+  // addMarker({coords:{lat: 19.431270, lng: -99.141998},
+  //   content: 'Metro San Juan Deletrán',
+  // }); 
+// xxxxxxx
 
   // Add marker function
   function addMarker(props) {
